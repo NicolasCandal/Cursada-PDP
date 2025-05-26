@@ -29,9 +29,7 @@ verDurabilidad :: Nave -> Int
 verDurabilidad = durabilidad
 
 resta :: Int -> Int -> Int
-resta num1 num2 
-  |num1 > num2 = num1 - num2
-  |otherwise = 0
+resta a b = max 0 (a-b)
 
 recibirAtaque :: Int -> Nave -> Nave
 recibirAtaque golpe unaNave 
