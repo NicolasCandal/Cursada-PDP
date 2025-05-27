@@ -81,7 +81,10 @@ poderGrito :: Barbaro -> Int
 poderGrito = length.concatenarHabilidades
 
 poderGritoDeGuerra :: Barbaro -> Bool
-poderGritoDeGuerra unBarbaro = poderGrito unBarbaro >  ((* 4). length ) (objetos unBarbaro) 
+poderGritoDeGuerra unBarbaro = poderGrito unBarbaro >  ((* 4). length ) (objetos unBarbaro)
+
+caligrafia :: Barbaro -> Bool
+caligrafia unBarbaro = 
 
 ritualDeFechorias :: Barbaro -> Bool
 ritualDeFechorias unBarbaro = saqueo unBarbaro || poderGritoDeGuerra unBarbaro
