@@ -24,12 +24,20 @@ trioLoco :: [Personaje]
 trioLoco = [ironMan,panteraNegra,spiderMan]
 
 mapCantidadDePoder :: (Int -> Int) -> Personaje -> Personaje
-mapCantidadDePoder funcion unPersonaje = unPersonaje {cantidadDePoder = funcion.cantidadDePoder $ unPersonaje}
+mapCantidadDePoder funcion unPersonaje = unPersonaje {cantidadDePoder = max 0 . funcion . cantidadDePoder $ unPersonaje}
+
+mapDerrotas :: ([Derrota] -> [Derrota]) -> Personaje -> Personaje
+mapDerrotas funcion unPersonaje = unPersonaje {derrotas = funcion . derrotas $ unPersonaje}
 
 
 -- &----------------------------------------------------------------------------------------------------------------
 -- Punto 1: Modelar entrenamiento
 
-entrenamiento :: [Personaje] -> [Personaje]
-entrenamiento listaDePersonajes = map (mapCantidadDePoder((*) . length $ listaDePersonajes)) listaDePersonajes
+cantidadDePersonajes :: [Personaje] -> Int
+cantidadDePersonajes unosPersonajes = length unosPersonajes
 
+entranarUnPersonaje :: Int -> Personaje -> Personaje
+entranarUnPersonaje multiplicador unPersonaje = mapCantidadDePoder (* multiplicador) unPersonaje
+
+entrenamiento :: [Personaje] -> [Personaje]
+entrenamiento personajes = map (entranarUnPersonaje.cantidadDePersonajes $ personajes) personajes
