@@ -99,15 +99,59 @@ convieneContratar(neilGaiman).  % Lo ponemos como un hecho mediante una clausula
 
 % Queremos saber si a Gus le gusta una obra. A Gus le gusta todo lo que escribió Asimov y sandman.
 
-leGustaAGus(sandman).
-
 leGustaAGus(Obra):-
-    escribio(asimov,Obra).
+    escribio(isaacAsimov,Obra).
+    leGustaAGus(sandman).
 
 % Queremos saber si una obra es rioplatense, que es cuando la nacionalidad de su artista es Uruguay o Argentina
 
-esRioplatense(Artista):-
-    tieneNacionalidad(Artista,argentina).
+esRioplatense(Obra):-
+    escribio(Artista,Obra),
+    tieneNacionalidad(Artista,Pais),
+    rioplatense(Pais).
+%Paises
 
-esRioplatense(Artista):-
-    tieneNacionalidad(Artista,uruguaya).
+rioplatense(argentina).
+rioplatense(uruguay).
+
+esLibro(Obra):-
+    escribio(_,Obra),
+    not(esComic(Obra)).
+
+esComiquero(Artista):-
+    escribio(Artista,_),
+    forall(escribio(Artista,Obra),esComic(Obra)).
+
+esDeGenero(it,novela(terror,11)).
+esDeGenero(buenosPresagios,novela(fantasia,6)).
+esDeGenero(sunrise,libroDeCuentos(12)).
+
+/* novela(tipoDeNovela,paginas).
+libroDeCuentos(cantidadDeCuentos).
+libroCientifico(disciplinaCientifica).
+bestSeller(precio,cantPaginas). */
+
+/* % Una obra esta buena cuando 
+1. Es una novela policial y tiene menos de 12 paginas 
+2. Es novela de terror 
+3. Los libros con mas de 10 cuentos 
+4. Obras de ciencia ficcionCuantica 
+5. Es bestSeller y el precio por pagina es menor a 50 */
+
+
+estaBuena(Obra):-
+    esDeGenero(Obra,Genero),
+    generoBueno(Genero).
+
+generoBueno(novela(terror,_)).
+
+generoBueno(novela(policial,Capitulos)):-
+    Capitulos < 12.
+
+generoBueno(libroDeCuentos(Cantidad)):-
+    Cantidad > 10.
+
+generoBueno(libroCientifico(ficcionCuantica)).
+
+generoBueno(bestSeller(Precio,Pags)):-
+    (Precio/Pags) < 50.

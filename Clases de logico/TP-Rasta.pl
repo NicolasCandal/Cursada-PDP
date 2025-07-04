@@ -7,7 +7,7 @@ estaEnElAula(santi).
 loQuiere(Persona,OtraPersona):-
     Persona = santi,
     estaEnElAula(OtraPersona),
-    \+ loQuiere(rasta,OtraPersona).
+    not(loQuiere(rasta,OtraPersona)).
 
 % Rasta quiere a todos los que están en el aula salvo a Polito.
     
@@ -20,8 +20,10 @@ loQuiere(Persona,OtraPersona):-
 
 menosSuerteQueRasta(Persona):-
     estaEnElAula(Persona),
-    \+ loQuiere(rasta,Persona).
+    not(loQuiere(rasta,Persona)).
 
 % Quien ayuda a otra persona es porque la quiere y no tiene menos suerte que ella. Además, quien ayuda está en el aula.
+
+
 
 
