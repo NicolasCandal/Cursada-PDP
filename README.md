@@ -1,2 +1,2 @@
 # parciales PDP
-Aca van a encontrar varios parciales de paradigmas de programcion con su enunciado y respectiva solucion
+Aca hay distintos parciales de cada paradigma junto a el codigo visto en las clases.

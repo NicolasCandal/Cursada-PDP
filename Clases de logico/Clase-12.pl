@@ -22,6 +22,7 @@ escribio(jorgeLuisBorges, ficciones).
 escribio(jorgeLuisBorges, elAleph).
 escribio(horacioQuiroga, cuentosDeLaSelva).
 escribio(horacioQuiroga, cuentosDeLocuraAmorYMuerte).
+escribio(richardRussell,percyJackson).
 
 tieneNacionalidad(elsaBornemann, argentina).  
 tieneNacionalidad(neilGaiman, reinoUnido).  
@@ -125,6 +126,7 @@ esComiquero(Artista):-
 esDeGenero(it,novela(terror,11)).
 esDeGenero(buenosPresagios,novela(fantasia,6)).
 esDeGenero(sunrise,libroDeCuentos(12)).
+esDeGenero(librazo,bestSeller(20,100)).
 
 /* novela(tipoDeNovela,paginas).
 libroDeCuentos(cantidadDeCuentos).
@@ -155,3 +157,69 @@ generoBueno(libroCientifico(ficcionCuantica)).
 
 generoBueno(bestSeller(Precio,Pags)):-
     (Precio/Pags) < 50.
+
+
+/* cantidadDePaginas/2 relaciona a una obra con su cantidad de páginas:
+las novelas tienen 20 páginas por capítulo;
+los libros de cuentos 5 páginas por cuento;
+las obras científicas tienen siempre 1000 páginas;
+de los best sellers ya sabemos su cantidad de páginas.
+*/
+
+cantidadDePaginas(Obra,Paginas):-
+    esDeGenero(Obra,Genero),
+    paginasPorGenero(Genero,Paginas).
+
+paginasPorGenero(novela(_,Caps),Paginas):-
+    Paginas is Caps * 20.
+
+paginasPorGenero(libroDeCuentos(Cantidad),Paginas):-
+    Paginas is Cantidad * 5.
+
+paginasPorGenero(libroCientifico(_),1000).
+
+paginasPorGenero(bestSeller(_,Paginas),Paginas).
+
+% este se calcula como `3 * cantidad de obras best seller que escribió. 
+% Recordemos que ya tenemos un predicado esBestSeller
+
+puntajeDelAutor(Autor,Puntaje):-
+    cantidadDeBestSeller(Autor,Cantidad),
+    Puntaje is Cantidad * 3.
+
+cantidadDeBestSeller(Autor,Cantidad):-
+    obrasBestsDelAutor(Autor,Obras),
+    length(Obras,Cantidad).
+
+obrasBestsDelAutor(Autor,Obras):-
+    escribio(Autor,_),
+    findall(Obra,escribioBestSeller(Autor,Obra),Obras).
+
+/* Se agrega el escribio() para poder ligar la variable Autor a un autor y asi hacer que sea inversible, 
+permitiendo preguntar los best sellers de todos los autores */
+
+escribioBestSeller(Autor,Obra):-
+    escribio(Autor,Obra),
+    esBestSeller(Obra).
+
+
+% se incorpora un nuevo tipo de obra: fantastica(ElementosMágicos)
+% queremos ver si la obra de tipo fantástica es copada. Esto ocurre cuando uno de sus elementos es un rubi.
+% por ejemplo agregamos a nuestra base de conocimientos: esDeTipo(sandman, fantastica([yelmo, bolsaDeArena, rubi])).
+
+esDeGenero(sandman,fantastico([yelmo,bolsaDeArena,rubi])).
+esDeGenero(percyJackson,fantastico([lapicera,zapatillas,mp3])).
+
+generoBueno(fantastico(Lista)):-
+    member(mp3,Lista).
+
+vendio(Autor, Copias):-
+    escribio(Autor, Obra),
+    copiasVendidas(Obra, Copias).
+
+promedioCopiasVendidas(Autor, Promedio):-
+    escribio(Autor, _),
+    findall(Copias, vendio(Autor, Copias), ListaCopias),
+    sumlist(ListaCopias, TotalCopias),
+    length(ListaCopias, Cantidad),
+    Promedio is TotalCopias/Cantidad.
