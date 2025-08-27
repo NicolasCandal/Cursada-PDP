@@ -324,3 +324,7 @@
 {"level":"info","message":"⌛ Building environment","timeElapsed":112,"timestamp":"2025-08-27T11:40:25.341Z"}
 {"level":"info","message":"⌛ Validating ClasesObjetos/pruebas.wlk","timeElapsed":152,"timestamp":"2025-08-27T11:40:25.589Z"}
 {"level":"info","message":"⌛ Validating ClasesObjetos/Prueba-Wollok/testExample.wtest","timeElapsed":102,"timestamp":"2025-08-27T11:40:25.769Z"}
+{"level":"info","message":"🧪 Test runner executed on d:\\Documentos\\UTN\\PDP\\Parciales\\parciales-PDP","result":{"errored":0,"failed":0,"ok":3},"testsFailed":[],"timeElapsed":215,"timestamp":"2025-08-27T14:23:18.723Z"}
+{"level":"info","message":"🧪 Test runner executed on d:\\Documentos\\UTN\\PDP\\Parciales\\parciales-PDP","result":{"errored":0,"failed":1,"ok":2},"testsFailed":[{"error":["wollok.lib.AssertionException: Value was not true","  at ClasesObjetos.Trabajos.test-fiesta.\"No empieza listo para la fiesta\" [ClasesObjetos/Trabajos/test-fiesta.wtest:13]"],"test":"ClasesObjetos.Trabajos.test-fiesta.\"No empieza listo para la fiesta\""}],"timeElapsed":232,"timestamp":"2025-08-27T14:23:35.403Z"}
+{"level":"info","message":"🧪 Test runner executed on d:\\Documentos\\UTN\\PDP\\Parciales\\parciales-PDP","result":{"errored":0,"failed":0,"ok":3},"testsFailed":[],"timeElapsed":213,"timestamp":"2025-08-27T14:24:50.457Z"}
+{"level":"info","message":"🧪 Test runner executed on d:\\Documentos\\UTN\\PDP\\Parciales\\parciales-PDP","result":{"errored":0,"failed":0,"ok":3},"testsFailed":[],"timeElapsed":210,"timestamp":"2025-08-27T14:25:29.302Z"}

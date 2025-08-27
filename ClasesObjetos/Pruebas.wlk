@@ -13,3 +13,8 @@ object lapicera {
         tinta -= palabras * 3
     }
 }
+
+object prueba {
+    const hoy = new Date()
+    method hoy() = hoy
+}

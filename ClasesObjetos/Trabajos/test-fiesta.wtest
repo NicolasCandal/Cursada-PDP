@@ -1,0 +1,14 @@
+import que-fiesta.*
+
+describe "Test de la fiesta" {
+
+test "Fiesta organizada por manic" {
+    manic.buscarEstrellas()
+    assert.that(fiesta.fiestaPreparada(manic))
+}
+
+test "No empieza listo para la fiesta" {
+    assert.notThat(chuy.listoParaFiesta())
+}
+
+}
