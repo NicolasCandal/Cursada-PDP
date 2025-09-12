@@ -1,0 +1,33 @@
+import atomico.*
+
+describe "test general" {
+    test "Produccion de burns con 10 varillas" {
+        assert.equals(1, burns.produccionEnergetica())
+    }
+
+    test "Produccion de exBosque con capacidad 20" {
+        assert.equals(18.5,exBosque.produccionEnergetica())
+    }
+
+    test "Produccion de elSuspiro" {
+        assert.equals(2,elSuspiro.produccionEnergetica())
+    }
+
+    test "Solo exBosque es contaminante" {
+        assert.equals(#{exBosque}, sprinfild.centralesContaminantes())
+    }
+
+    test "sprinfild cubrio sus nesesidades" {
+        assert.that(sprinfild.cubrioSusNesesidades())
+    }
+
+    test "sprinfild esta al horno con una nesesidad de 30" {
+        sprinfild.nesesidadEnergetica(30)
+        assert.that(sprinfild.estaAlHorno())
+    }
+
+    test "Mejores centrales de cada ciudad"{
+        assert.equals([exBosque,hidroElectrica],region.MejorCentralPorCiudad())
+    }
+
+}
