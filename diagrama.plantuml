@@ -1,0 +1,81 @@
+@startuml diagrama
+interface Paciente{
+energia()
+responsable()
+curar()
+estaFeiz()
+}
+object huellitas{
+pacientes
+botiquin
+--
+botiquin()
+agregarAlBotiquin(cosaAAgregar)
+necesitaComprarVendas()
+pacientes()
+agregarPaciente(unPaciente)
+agregarA(coleccion, unValor)
+darDeAlta(unPaciente)
+cantidadDePacientes()
+pacientesRecuperados()
+responsablesDePacientes()
+pacienteMasEnergetico()
+curarATodos()
+}
+
+object pepita{
+energia
+responsable
+dondeEsta
+--
+energia()
+responsable()
+dondeEsta()
+comer(unosGramos)
+volarHacia(unaCiudad)
+estaFeliz()
+curar()
+}
+object nano{
+energia
+responsable
+--
+energia()
+responsable()
+dondeEsta()
+comer(unosGramos)
+galopar(unaDistancia)
+estaFeliz()
+curar()
+}
+class Perro{
+responsable
+energia
+juguetes
+energia()
+responsable()
+juguetes()
+estaFeliz()
+comer(unosGramos)
+curar()
+perseguirA(unGato)
+}
+class Gato{
+responsable
+energia
+edad
+responsable()
+energia()
+edad()
+comer(unosGramos)
+curar()
+estaFeliz()
+serPerseguido()
+}
+huellitas --> "*" Paciente
+Gato ..|> Paciente
+Perro ..|> Paciente
+pepita ..|> Paciente
+nano ..|> Paciente
+Perro ..> Gato
+@enduml
