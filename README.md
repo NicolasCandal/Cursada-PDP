@@ -1,2 +1,2 @@
-# parciales PDP
-Aca hay distintos parciales de cada paradigma junto a el codigo visto en las clases.
+# Cursada PDP
+En este repositorio esta todo el material sobre los TPs realizados durante la cursas de los lunes mañana 
