@@ -22,15 +22,16 @@ class Plato {
 }
 
 class Critico {
-    method preferencia(restaurante) = restaurante.esPremiado()
+    var property tipoPreferencia 
+    method preferencia(restaurante) = restaurante.esPremiado() and tipoPreferencia.preferencia(restaurante)
 }
 
-class Variedad inherits Critico {
-    override method preferencia(restaurante) = super(restaurante) and restaurante.menuVariado()
+object variedad {
+    method preferencia(restaurante) = restaurante.menuVariado()
 }
 
-class Light inherits Critico {
-    override method preferencia(restaurante) = super(restaurante) and restaurante.menuLight()
+object light  {
+    method preferencia(restaurante) = restaurante.menuLight()
 }
 
 object criticoCombinado {

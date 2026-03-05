@@ -15,7 +15,7 @@ class Tripulante {
     method prestigio() = rolActual.nivelPrestigio()
 
     method cambiarRol(otroRol) {
-        if(otroRol.PosibleCambiar(self)){
+        if(otroRol.posibleCambiar(self)){
            rolActual = otroRol
         } else {
             throw new Exception(message = "No cumple las condiciones para cambio de rol")
@@ -27,7 +27,7 @@ object libre {
 
     const property nivelPrestigio = 0
 
-    method PosibleCambiar(tripulante) = true
+    method posibleCambiar(tripulante) = true
 
 }
 
@@ -35,7 +35,7 @@ object obrero {
 
     const property nivelPrestigio = 50
 
-    method PosibleCambiar(tripulante) = tripulante.mayorDeEdad() and tripulante.fuerzaMayorA(50)
+    method posibleCambiar(tripulante) = tripulante.mayorDeEdad() and tripulante.fuerzaMayorA(50)
 
 }
 
@@ -44,13 +44,13 @@ class MrFusion {
 
     method altoConocimiento(tripulante) = tripulante.conocimiento() > estacionEspacial.conocimientoPromedio() * 1.21
 
-    method PosibleCambiar(tripulante) = tripulante.mayorDeEdad() and self.altoConocimiento(tripulante)
+    method posibleCambiar(tripulante) = tripulante.mayorDeEdad() and self.altoConocimiento(tripulante)
     
 }
 
 object capitan inherits MrFusion {
 
-    override method PosibleCambiar(tripulante) = super(tripulante) and tripulante.fuerzaMayorA(73)
+    override method posibleCambiar(tripulante) = super(tripulante) and tripulante.fuerzaMayorA(73)
 
 }
 
